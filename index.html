@@ -3,7 +3,11 @@
   <head>
     <title>Mi página</title>
     <style>
- body {
+
+    *{
+      scroll-behavior: smooth;
+    }
+body {
   background-color: #0a0a1a;
   color: white;
   font-family: Arial, sans-serif;
@@ -46,6 +50,17 @@ nav {
   letter-spacing: 10px;
   padding: 30px 0;
 }
+
+.logo-dark {
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+  color: #003636;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff;
+  letter-spacing: 10px;
+  padding: 30px 0;
+}
+
 .imagen-tematica {
   width: 100%;
   max-width: 600px;
@@ -54,18 +69,44 @@ nav {
   border: 2px solid #00ffff;
   box-shadow: 0 0 20px #00ffff;
 }
+button {
+  background-color: transparent;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  padding: 10px 25px;
+  font-size: 16px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  margin: 15px auto;
+  display: block;
+}
+button:hover {
+  background-color: #00ffff;
+  color: #0a0a1a;
+  box-shadow: 0 0 20px #00ffff;
+}
 </style>
   </head>
   <body>
+    <!-- <button class="btn-dark">cambiar</button>-->
     <div class="logo">GUARDIAN</div>
     <nav>
-  <a href="#inicio">Inicio</a>
-  <a href="#intereses">Intereses</a>
-  <a href="#sobre-mi">Sobre mí</a>
-  <a href="#redes">Redes</a>
-</nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#intereses">Intereses</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#redes">Redes</a>
+      <button onclick="cambiartexto()">Haz click aqui</button>
 
-    <h1 id="inicio">Streamer • Gamer • Geek</h1>
+      <button onclick="saludar()">Saludame</button>
+
+      <button id="btnFondo" onclick="changecolor()">
+        <img id="imgBoton" src="/imagenes/sun.jpg" alt="CambiarFondo" width="50">
+      </button>
+
+    </nav>
+
+    <h1 id="tagline">Streamer • Gamer • Geek</h1>
+    
     <h2 id="intereses">Mis intereses</h2>
 
     <img src="../imagenes/miku.jpg" alt="anime" class="imagen-tematica">
@@ -80,8 +121,60 @@ nav {
     <h2 id="sobre-mi">Sobre mí</h2>
       <p>Soy streamer en TikTok Live y me apasionan los videojuegos y el diseño web. Actualmente estoy aprendiendo programación para construir mis propios proyectos. Amante de los idiomas y el mundo geek formemos una maravillosa comunidad donde todos podamos hablar de los juegos y anime que nos guste</p>
     <h2 id="redes">Mis redes</h2>
+    
     <a href="https://www.tiktok.com" target="_blank">TikTok</a>
     <a href="https://www.instagram.com" target="_blank">Instagram</a>
     <a href="https://www.youtube.com" target="_blank">YouTube</a>
-</body>
+ <!--
+    <script>
+
+      const btnCambiar = document.querySelector('.btn-dark')
+      const logoTitle = document.querySelector('.logo')
+      btnCambiar.addEventListener('click', ()=>{
+        logoTitle.className = logoTitle.className == 'logo-dark' ? 'logo' : 'logo-dark'
+      })
+
+    </script>-->
+    <script>
+      document.title = "sxpGuardian - Streamer";
+      document.getElementById("tagline").textContent = "Welcum to my world"
+      function cambiartexto() {
+        let mensajes = [
+    "lets rest on the bonfire while we talk",
+    "keep you waiting huh",
+    "Enjoy this new world",
+    "Together we can create a new community",
+    "Leave the rest to me, you need to rest and smile"
+    ];
+    let aleatorio = Math.floor(Math.random() * mensajes.length);
+    document.getElementById("tagline").textContent = mensajes[aleatorio];
+      }
+
+      function saludar(){
+    let hora = new Date().getHours();
+
+    if (hora < 12){
+      document.getElementById("tagline").textContent = "buenos dias como va todo";
+    }else if( hora < 18){
+      document.getElementById("tagline").textContent = "buenas tardes ya es un poco tarde no crees?";
+    }else{
+      document.getElementById("tagline").textContent = "buenas noches, considera dormir un poco";
+    }
+  }
+    let modooscuro = false;
+ function CambiarFondo() {
+  if (modooscuro) {
+    document.body.style.backgroundColor = "#00120B";
+    document.body.style.color = "#C200FB";
+    document.getElementById("imgBoton").src = "/imagenes/sun.jpg";
+  } else {
+    document.body.style.backgroundColor = "#9D4EDD";
+    document.body.style.color = "#00F5D4";
+    document.getElementById("imgBoton").src = "/imagenes/moon.jpg";
+  }
+  modooscuro = !modooscuro;
+}
+document.getElementById("btnFondo").addEventListener("click",CambiarFondo)
+    </script>
+  </body>
 </html>
